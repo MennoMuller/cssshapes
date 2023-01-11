@@ -1,0 +1,328 @@
+@use "colors" as *;
+@use "basic" as *;
+@use "text" as *;
+
+.oefenblok {
+  width: 400px;
+  height: 400px;
+  border: 4px solid $dark-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.oefenshape {
+  width: 160px;
+  height: 80px;
+  border-radius: 80px 80px 0 0;
+  background-color: yellow;
+
+  position: relative;
+
+  top: -40px;
+  transform-origin: bottom;
+  rotate: -45deg;
+
+  transition: all 1s ease-in-out;
+
+  &:hover {
+    rotate: 0deg;
+    &::after {
+      rotate: -180deg;
+    }
+  }
+
+  &::after {
+    width: 160px;
+    height: 80px;
+    border-radius: 80px 80px 0 0;
+    background-color: yellow;
+    transform-origin: bottom;
+    rotate: -90deg;
+
+    position: absolute;
+    content: "";
+
+    transition: all 1s ease-in-out;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: max(33.33vh, 400px);
+  .grid__item {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    border: 4px solid $dark-color;
+
+    .grid__title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 12px 18px;
+      background-color: $accent-color;
+    }
+
+    .grid__shape-wrapper {
+      &--guy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+      }
+      .grid__shape {
+        background-color: $base-color;
+
+        &--square {
+          width: 160px;
+          height: 160px;
+        }
+
+        &--rectangle {
+          width: 320px;
+          height: 160px;
+        }
+
+        &--circle {
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+        }
+
+        &--oval {
+          width: 320px;
+          height: 160px;
+          border-radius: 50%;
+        }
+
+        &--triangle {
+          background-color: transparent;
+          border-left: 80px solid transparent;
+          border-right: 80px solid transparent;
+          border-bottom: 160px solid $base-color;
+        }
+
+        &--tri-down {
+          background-color: transparent;
+          border-left: 80px solid transparent;
+          border-right: 80px solid transparent;
+          border-top: 160px solid $base-color;
+        }
+
+        &--tri-right {
+          background-color: transparent;
+          border-top: 80px solid transparent;
+          border-bottom: 80px solid transparent;
+          border-left: 160px solid $base-color;
+        }
+
+        &--tri-left {
+          background-color: transparent;
+          border-top: 80px solid transparent;
+          border-bottom: 80px solid transparent;
+          border-right: 160px solid $base-color;
+        }
+
+        &--trapezoid {
+          background-color: transparent;
+          border-left: 40px solid transparent;
+          border-right: 40px solid transparent;
+          border-bottom: 160px solid $base-color;
+          width: 200px;
+          height: 0;
+        }
+
+        &--parallellogram {
+          background-color: transparent;
+          border-left: 40px solid transparent;
+          border-bottom: 160px solid $base-color;
+          width: 200px;
+          height: 0;
+          position: relative;
+          right: 40px;
+
+          &::after {
+            background-color: transparent;
+            border-right: 40px solid transparent;
+            border-top: 160px solid $base-color;
+            width: 200px;
+            height: 0;
+            position: absolute;
+            content: "";
+          }
+        }
+
+        &--star {
+          background-color: transparent;
+          border-left: 80px solid transparent;
+          border-right: 80px solid transparent;
+          border-bottom: 160px solid $base-color;
+          position: relative;
+          &::after {
+            position: absolute;
+            content: "";
+
+            background-color: transparent;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-top: 160px solid $base-color;
+
+            top: 60px;
+            left: -80px;
+          }
+        }
+
+        &--hex {
+          background-color: transparent;
+          border-left: 40px solid transparent;
+          border-right: 40px solid transparent;
+          border-bottom: 80px solid $base-color;
+          width: 200px;
+          height: 0;
+          top: -40px;
+
+          position: relative;
+
+          &::after {
+            position: absolute;
+            content: "";
+
+            background-color: transparent;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-top: 80px solid $base-color;
+            width: 120px;
+            height: 0;
+
+            top: 80px;
+            left: -40px;
+          }
+        }
+
+        &--heart {
+          width: 100px;
+          height: 150px;
+          rotate: 45deg;
+          border-radius: 50px 50px 0 0;
+
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: "";
+
+            width: 100px;
+            height: 150px;
+            rotate: -90deg;
+            border-radius: 50px 50px 0 0;
+            background-color: $base-color;
+
+            left: -25px;
+            top: 25px;
+          }
+        }
+        &--egg {
+          width: 110px;
+          height: 160px;
+          border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+
+        &--moon {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          background-color: transparent;
+          box-shadow: 10px 10px $base-color;
+        }
+      }
+    }
+  }
+}
+
+.grid__shape-wrapper--large {
+  width: 100%;
+  height: 100%;
+}
+
+.grid__shape--square--animated {
+  animation: squarech 2s infinite;
+}
+
+@keyframes squarech {
+  from {
+    background-color: red;
+    width: 100px;
+  }
+  to {
+    background-color: blueviolet;
+    width: 300px;
+  }
+}
+.grid__shape--square--animated2 {
+  animation: squarech2 2s infinite;
+  position: relative;
+}
+@keyframes squarech2 {
+  0% {
+    top: 0;
+    background-color: blue;
+  }
+  50% {
+    top: 100px;
+    background-color: aqua;
+  }
+  100% {
+    top: 0;
+    background-color: blue;
+  }
+}
+
+.guy {
+  background-color: $guy-color;
+  position: relative;
+  &--hair {
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 40px solid $guy-color;
+    top: 72px;
+    &-2 {
+      top: 40px;
+      left: 20px;
+    }
+  }
+
+  &--head {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    top: 10px;
+  }
+
+  &--leg {
+    width: 10px;
+    height: 100px;
+    left: 30px;
+    box-shadow: -60px 0 $guy-color;
+  }
+
+  &--foot {
+    width: 40px;
+    height: 30px;
+    border-radius: 15px 15px 0 0;
+
+    left: 30px;
+    box-shadow: -60px 0 $guy-color;
+  }
+}
